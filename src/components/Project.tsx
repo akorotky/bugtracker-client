@@ -1,9 +1,17 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
-import { ProjectDTO } from "../types/ProjectTypes";
+import { Link, useLoaderData } from "react-router-dom";
+import { ProjectResource } from "../types/ProjectTypes";
 
 export default function Project() {
-  const userData = useLoaderData() as ProjectDTO;
+  const projectData = useLoaderData() as ProjectResource;
 
-  return <div>{userData.title}</div>;
+  return (
+    <div>
+      <div>{projectData.title}</div>
+      <div>{projectData.description}</div>
+      <Link to={{ pathname: "/bugs", search: "project=" + projectData.id.toString() }}>
+        Bugs
+      </Link>
+    </div>
+  );
 }
