@@ -1,26 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { BugResource } from "../types/BugTypes";
-import { fetchData } from "../utils";
+import { HalResource } from "../types/HalTypes";
 
-interface BugProps {
-  root: string;
-}
-
-export default function Bugs({ root }: BugProps) {
-  const [bugData, setBugData] = useState<BugResource[]>();
-  const location = useLocation();
-  const resource = root + location.pathname + location.search;
-
-  useEffect(() => {
-    fetchData(resource).then((data) => {
-      setBugData(data._embedded?.bugs);
-    });
-  }, []);
+export default function Bugs() {
+  const bugData = useLoaderData() as HalResource;
+  const bugList = bugData._embedded?.bugs as BugResource[];
 
   return (
     <div>
-      {bugData?.map((bug) => (
+      {bugList?.map((bug) => (
         <div key={bug.id}>
           <Link to={bug.id.toString()}>{bug.title}</Link>
         </div>

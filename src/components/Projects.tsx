@@ -9,9 +9,9 @@ export default function Projects() {
 
   return (
     <div>
-      {projectList.map((project) => (
+      {projectList?.map((project) => (
         <div key={project.id}>
-          <Link to={project.id.toString()}>{project.title}</Link>
+          <Link to={"/projects/" + project.id.toString()}>{project.title}</Link>
         </div>
       ))}
     </div>

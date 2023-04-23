@@ -9,9 +9,7 @@ export default function Project() {
     <div>
       <div>{projectData.title}</div>
       <div>{projectData.description}</div>
-      <Link to={{ pathname: "/bugs", search: "project=" + projectData.id.toString() }}>
-        Bugs
-      </Link>
+      <Link to="bugs">Bugs</Link>
     </div>
   );
 }

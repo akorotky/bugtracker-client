@@ -9,7 +9,7 @@ export default function Users() {
 
   return (
     <div>
-      {userList.map((user) => (
+      {userList?.map((user) => (
         <div key={user.id}>
           <Link to={user.username}>{user.username}</Link>
         </div>
